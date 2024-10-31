@@ -29,7 +29,7 @@ function printWithForeach(iterable $arg): void
     echo '<br>';
 }
 
-function printIterator(Iterator $itr)
+function printIterator(Iterator $itr): void
 {
     echo 'Iterating over an iterator with object methods. <br>';
     $itr->rewind();
