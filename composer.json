@@ -1,0 +1,18 @@
+{
+    "name": "morcs/php_assignment",
+    "description": "Desc",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Morcs\\PhpAssignment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "morcsog",
+            "email": "morcsog99@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
