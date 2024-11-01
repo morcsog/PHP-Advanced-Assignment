@@ -8,19 +8,19 @@ use Exception;
 use App\ExceptionExample\InvalidNumberException;
 use Throwable;
 
-class SortedArrayIterator implements \Iterator
+final class SortedArrayIterator implements \Iterator
 {
     public function __construct(public array $arr)
     {
-        if(count($arr) <= 0){
+        if (count($arr) <= 0) {
             throw new Exception('You gave an empty array.');
         }
-        foreach($arr as $item){
-            if($item <= 0 || !is_int($item)){
-                throw new InvalidNumberException($item);                
+        foreach ($arr as $item) {
+            if ($item <= 0 || !is_int($item)) {
+                throw new InvalidNumberException($item);
             }
         }
-        sort($this->arr); 
+        sort($this->arr);
     }
     public function current(): mixed
     {
@@ -42,4 +42,10 @@ class SortedArrayIterator implements \Iterator
     {
         reset($this->arr);
     }
+
+    public static function withPositiveIntegersOnly(array $arr): SortedArrayIterator
+    {
+        return new SortedArrayIterator(array_filter($arr, fn ($v) => is_int($v) && $v >= 0));
+    }
+
 }
