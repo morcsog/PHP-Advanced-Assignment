@@ -2,22 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Utils;
+namespace App\utils;
 
 use Iterator;
 
 function generateRandomNumbers(int $length): array
 {
-    $rtrnArr = [];
-    if (!isset($length)) {
-        return [
-            'Error:' => 'You did not provide a lenght.'
-        ];
-    }
+    $result = [];
     for ($i = 0; $i < $length; $i++) {
-        array_push($rtrnArr, rand(0, 900));
+        $result[] = rand(0, 999);
     }
-    return $rtrnArr;
+    return $result;
 }
 
 function printWithForeach(iterable $arg): void
@@ -33,6 +28,7 @@ function printIterator(Iterator $itr): void
 {
     echo 'Iterating over an iterator with object methods. <br>';
     $itr->rewind();
+
     while ($itr->valid()) {
         echo $itr->current();
         $itr->next();
@@ -42,15 +38,9 @@ function printIterator(Iterator $itr): void
 
 function randomNumbersWithGenerator(int $length): \Generator
 {
-    if (!isset($length)) {
-        return [
-            'Error:' => 'You did not provide a lenght.'
-        ];
-    }
     for ($i = 0; $i < $length; $i++) {
-        rand(0, 900);
+        rand(0, 999);
         yield;
-
     }
 }
 

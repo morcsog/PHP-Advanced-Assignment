@@ -10,11 +10,8 @@ use Throwable;
 
 final class SortedArrayIterator implements \Iterator
 {
-    public function __construct(public array $arr)
+    public function __construct(private array $arr)
     {
-        if (count($arr) <= 0) {
-            throw new Exception('You gave an empty array.');
-        }
         foreach ($arr as $item) {
             if ($item <= 0 || !is_int($item)) {
                 throw new InvalidNumberException($item);
@@ -22,22 +19,27 @@ final class SortedArrayIterator implements \Iterator
         }
         sort($this->arr);
     }
-    public function current(): mixed
+
+    public function current(): int
     {
         return current($this->arr);
     }
+
     public function next(): void
     {
         next($this->arr);
     }
+
     public function key(): int
     {
         return key($this->arr);
     }
+
     public function valid(): bool
     {
         return key($this->arr) !== null;
     }
+
     public function rewind(): void
     {
         reset($this->arr);
@@ -45,7 +47,7 @@ final class SortedArrayIterator implements \Iterator
 
     public static function withPositiveIntegersOnly(array $arr): SortedArrayIterator
     {
-        return new SortedArrayIterator(array_filter($arr, fn ($v) => is_int($v) && $v >= 0));
+        return new SortedArrayIterator(array_filter($arr, fn ($v) => is_int($v) && $v > 0));
     }
 
 }
