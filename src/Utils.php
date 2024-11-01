@@ -39,3 +39,22 @@ function printIterator(Iterator $itr): void
         echo '<br>';
     }
 }
+
+function randomNumbersWithGenerator(int $length): \Generator
+{
+    if (!isset($length)) {
+        return [
+            'Error:' => 'You did not provide a lenght.'
+        ];
+    }
+    for ($i = 0; $i < $length; $i++) {        
+        rand(0, 900);
+        yield;
+        
+    }    
+}
+
+function printMemoryUsage():void
+{
+    echo 'Current memory usage: ' . number_format(memory_get_usage(true)/1000, 2, '.', ' ') . ' KB <br>';
+}
